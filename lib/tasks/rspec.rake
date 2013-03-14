@@ -2,7 +2,7 @@ require 'rspec/core/rake_task'
 
 desc "Run RSpec examples."
 RSpec::Core::RakeTask.new("rspec-rerun:run") do |t|
-  t.pattern = "spec/**/*_spec.rb"
+  t.pattern = "spec/acceptance/**/*_spec.rb"
   t.rspec_opts = [
     "--require", File.join(File.dirname(__FILE__), '../rspec-rerun'),
     "--format", "RSpec::Rerun::Formatters::FailuresFormatter",
@@ -12,7 +12,7 @@ end
 
 desc "Re-run failed RSpec examples."
 RSpec::Core::RakeTask.new("rspec-rerun:rerun") do |t|
-  t.pattern = "spec/**/*_spec.rb"
+  t.pattern = "spec/acceptance/**/*_spec.rb"
   t.rspec_opts = [
     "-O", RSpec::Rerun::Formatters::FailuresFormatter::FILENAME,
     File.exist?(".rspec") ? File.read(".rspec").split(/\n+/).map { |l| l.shellsplit } : nil
